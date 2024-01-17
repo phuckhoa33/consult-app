@@ -11,7 +11,6 @@ import ch.qos.logback.core.model.Model;
 public class CoreController {
     @GetMapping("")
     public String index(Model model) {
-        System.out.println("FUC");
         return "core/home";
     }
 }
