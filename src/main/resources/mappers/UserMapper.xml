@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.consult_app.mappers.UserMapper">
+
+    <resultMap id="userResultMap" type="com.consult_app.models.User">
+        <result column="user_id" property="userId"/>
+        <result column="email" property="email"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="firstname" property="firstname"/>
+        <result column="lastname" property="lastname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phome_number" property="phoneNumber"/>
+        <result column="date_of_birth" property="dateOfBirth"/>
+        <result column="gender" property="gender"/>
+        <result column="address" property="address"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+
+    </resultMap>
+
+    <select id="getUserByUserName" resultMap="userResultMap">
+        SELECT usr.user_id
+             , usr.email
+             , usr.username
+             , usr.password
+             , usr.firstname
+             , usr.lastname
+             , usr.avatar
+             , usr.phome_number
+             , usr.date_of_birth
+             , usr.gender
+             , usr.address
+             , usr.createdat
+             , usr.updatedat
+        FROM user usr
+        WHERE usr.username = #{username}
+    </select>
+    
+
+</mapper>
