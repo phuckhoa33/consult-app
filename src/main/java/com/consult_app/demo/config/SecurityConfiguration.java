@@ -26,7 +26,7 @@ public class SecurityConfiguration {
                                 .csrf((csrf) -> csrf.disable())
                                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
 
-                                                .requestMatchers("/consultapp/**").permitAll()
+                                                .requestMatchers("/**").permitAll()
                                                 .anyRequest()
                                                 .authenticated())
                                 .sessionManagement((sessionManagement) -> sessionManagement
