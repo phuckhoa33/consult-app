@@ -1,4 +1,4 @@
-package com.consult_app.demo.dto;
+package com.consult_app.demo.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

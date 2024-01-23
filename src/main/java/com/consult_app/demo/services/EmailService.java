@@ -1,6 +1,6 @@
 package com.consult_app.demo.services;
 
-import com.consult_app.demo.dto.InputEmailData;
+import com.consult_app.demo.dtos.InputEmailData;
 
 public interface EmailService {// Method
     // To send a simple email

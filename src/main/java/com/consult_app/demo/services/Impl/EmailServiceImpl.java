@@ -1,7 +1,7 @@
 package com.consult_app.demo.services.Impl;
 
-import com.consult_app.demo.dto.EmailDetail;
-import com.consult_app.demo.dto.InputEmailData;
+import com.consult_app.demo.dtos.EmailDetail;
+import com.consult_app.demo.dtos.InputEmailData;
 import com.consult_app.demo.services.EmailService;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;

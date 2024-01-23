@@ -1,4 +1,4 @@
-package com.consult_app.demo.dto;
+package com.consult_app.demo.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class InputEmailData {
-    private EmailDetail detail;
+public class EmailVariable {
+    private String path;
 }

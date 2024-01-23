@@ -2,13 +2,13 @@ package com.consult_app.demo.config;
 
 import java.io.IOException;
 
-import com.consult_app.demo.dto.ErrorMessageResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+import com.consult_app.demo.dtos.ErrorMessageResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
