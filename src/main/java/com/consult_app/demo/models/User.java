@@ -26,7 +26,8 @@ public class User implements UserDetails {
     private String avatar;
     private String phoneNumber;
     private String dateOfBirth;
-    private int gender;
+    private boolean gender;
+    private boolean ban;
     private String address;
     private String createdAt;
     private String updatedAt;

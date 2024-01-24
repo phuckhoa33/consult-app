@@ -16,6 +16,7 @@
         <result column="date_of_birth" property="dateOfBirth"/>
         <result column="gender" property="gender"/>
         <result column="address" property="address"/>
+        <result column="ban" property="ban"/>
         <result column="created_at" property="createdAt"/>
         <result column="updated_at" property="updatedAt"/>
 
@@ -33,6 +34,7 @@
              , usr.date_of_birth
              , usr.gender
              , usr.address
+             , usr.ban
              , usr.createdat
              , usr.updatedat
         FROM user usr

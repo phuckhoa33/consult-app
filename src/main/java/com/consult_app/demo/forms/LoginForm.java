@@ -1,37 +1,23 @@
 package com.consult_app.demo.forms;
 
-import com.consult_app.demo.annotations.ValidEmail;
 import com.drew.lang.annotations.NotNull;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SignupForm {
+@Builder
+public class LoginForm {
     @NotNull
     @NotEmpty
-    private String firstname;
-
-    @NotNull
-    @NotEmpty
-    private String lastname;
-
-    @NotNull
-    @NotEmpty
-    private String username;
+    private String email;
 
     @NotNull
     @NotEmpty
     private String password;
-
-    private String matchingPassword;
-
-    @NotNull
-    @NotEmpty
-    // @ValidEmail
-    private String email;
 }
