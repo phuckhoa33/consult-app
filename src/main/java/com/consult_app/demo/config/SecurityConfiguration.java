@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,6 +30,18 @@ public class SecurityConfiguration {
                                                 .requestMatchers("/**").permitAll()
                                                 .anyRequest()
                                                 .authenticated())
+                                .formLogin(
+                                                form -> form
+                                                                .loginPage("/auth/login")
+                                                                .loginProcessingUrl("/login")
+                                                                .defaultSuccessUrl("/consultapp")
+                                                                .permitAll())
+                                .logout(
+                                                logout -> logout
+                                                                .logoutRequestMatcher(
+                                                                                new AntPathRequestMatcher("/logout"))
+                                                                .permitAll())
+
                                 .sessionManagement((sessionManagement) -> sessionManagement
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authenticationProvider(authenticationProvider)

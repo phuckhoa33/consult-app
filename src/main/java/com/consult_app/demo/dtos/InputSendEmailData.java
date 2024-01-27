@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class AuthenticationReponse {
-    private String message;
-    private String token;
+public class InputSendEmailData {
+    private String email;
+    private String url;
+    private String template;
 }

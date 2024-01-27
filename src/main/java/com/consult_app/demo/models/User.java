@@ -1,6 +1,7 @@
 package com.consult_app.demo.models;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class User implements UserDetails {
-    private int userId;
+    private long userId;
     private String email;
     private String username;
     private String password;
@@ -29,8 +30,8 @@ public class User implements UserDetails {
     private boolean gender;
     private boolean ban;
     private String address;
-    private String createdAt;
-    private String updatedAt;
+    private Date createdAt;
+    private Date updatedAt;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

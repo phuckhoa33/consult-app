@@ -1,5 +1,7 @@
 package com.consult_app.demo.dtos;
 
+import com.consult_app.demo.models.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class AuthenticationReponse {
-    private String message;
-    private String token;
+public class TokenChecker {
+    private boolean expired;
+    private User user;
 }

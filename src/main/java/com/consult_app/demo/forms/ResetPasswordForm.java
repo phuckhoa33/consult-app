@@ -1,4 +1,4 @@
-package com.consult_app.demo.dtos;
+package com.consult_app.demo.forms;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class AuthenticationReponse {
-    private String message;
+public class ResetPasswordForm {
     private String token;
+    private String newPassword;
+    private String confirmNewPassword;
 }

@@ -3,7 +3,9 @@ package com.consult_app.demo.services;
 import com.consult_app.demo.models.User;
 
 public interface UserService {
-    String createUser(User user);
+    User createUser(User user);
+
+    boolean checkExistUser(User user);
 
     User getUserByEmail(String email);
 

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to XMLT CONSULT APP</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        .button:hover {
+            background-color: #1f6da8;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to XMLT!</h1>
+        <p>We are thrilled to have you on board, and we appreciate your decision to join our community.</p>
+        
+        <p><strong>Prerequisites for XMLT:</strong></p>
+        <p>[Include a brief introduction about the key features, benefits, and any prerequisites users should be aware of. Highlight the value they'll gain by being part of the platform.]</p>
+
+        <p>Now, let's get you started:</p>
+        
+        <p><strong>Step 1: Confirm Your Signup</strong></p>   
+
+        
+        <p>To complete your signup, please click on the following link:</p>
+        <a class="button"  th:href="${path}">Confirm Signup</a>
+
+        <p><strong>Note:</strong> If you are unable to click the link directly, you can copy and paste it into your browser.</p>
+
+        <p><strong>Step 2: Create Your Profile</strong></p>
+        <p>Once you've confirmed your signup, the next step is to create your profile. This is where you can share more about yourself, connect with other users, and start exploring all that XMLT has to offer.</p>
+
+        <p>If you encounter any issues during the signup process or have any questions, our support team is here to help. Feel free to reach out to <a href="mailto:phuckhoa81@gmail.com">phuckhoa81@gmail.com</a>.</p>
+
+        <p>Thank you for choosing XMLT. We look forward to having you as an integral part of our community!</p>
+
+        <div class="footer">
+            <p><strong>XMLT Team</strong><br>
+                XMLT<br>
+            phucnkmps24819@fpt.edu.vn</p>
+        </div>
+    </div>
+</body>
+</html>

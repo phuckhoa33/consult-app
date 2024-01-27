@@ -2,9 +2,9 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.consult_app.mappers.AdminMapper">
+<mapper namespace="com.consult_app.demo.mappers.AdminMapper">
 
-    <resultMap id="adminResultMap" type="com.consult_app.models.Admin">
+    <resultMap id="adminResultMap" type="com.consult_app.demo.models.Admin">
         <result column="admin_id" property="adminId"/>
         <result column="user_id" property="userId"/>
         <result column="group_id" property="groupId"/>
