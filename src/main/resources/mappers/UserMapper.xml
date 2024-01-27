@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.consult_app.demo.mappers.UserMapper">
+
+    <resultMap id="userResultMap" type="com.consult_app.demo.models.User">
+        <result column="user_id" property="userId"/>
+        <result column="email" property="email"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="firstname" property="firstname"/>
+        <result column="lastname" property="lastname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="date_of_birth" property="dateOfBirth"/>
+        <result column="gender" property="gender"/>
+        <result column="address" property="address"/>
+        <result column="ban" property="ban"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+
+    </resultMap>
+
+    <select id="getUserByUserName" resultMap="userResultMap">
+        SELECT usr.user_id
+             , usr.email
+             , usr.username
+             , usr.password
+             , usr.firstname
+             , usr.lastname
+             , usr.avatar
+             , usr.phone_number
+             , usr.date_of_birth
+             , usr.gender
+             , usr.address
+             , usr.ban
+             , usr.created_at
+             , usr.updated_at
+        FROM "User" usr
+        WHERE usr.username = #{username}
+    </select>
+    
+    <select id="getUserByEmail" resultMap="userResultMap">
+        SELECT usr.user_id
+             , usr.email
+             , usr.username
+             , usr.password
+             , usr.firstname
+             , usr.lastname
+             , usr.avatar
+             , usr.phone_number
+             , usr.date_of_birth
+             , usr.gender
+             , usr.address
+             , usr.ban
+             , usr.created_at
+             , usr.updated_at
+        FROM "User" usr
+        WHERE usr.email = #{email}
+    </select>
+
+    <insert id="createUser">
+		INSERT INTO "User" (
+		        user_id,
+                email,
+                username,
+                password,
+                firstname,
+                lastname,
+                created_at
+		) VALUES (
+		#{userId}
+		, #{email}
+		, #{username}
+		, #{password}
+		, #{firstname}
+		, #{lastname}
+		, #{createdAt}
+
+		)
+
+
+
+	</insert>
+    <update id="updateUser">
+        UPDATE user
+        SET password = #{password},
+            avatar = #{avatar},
+            email = #{email},
+            username = #{username},
+            phone_number = #{phoneNumber},
+            date_of_birth = #{dateOfBirth},
+            address = #{address},
+            ban = #{ban},
+            gender = #{gender},
+            updated_at = #{updatedAt}
+        WHERE user_id=#{id}
+    </update>
+</mapper>
