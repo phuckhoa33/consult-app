@@ -1,0 +1,101 @@
+.form {
+    /* display: grid;
+    grid-template-columns: auto auto auto auto; */
+    border-top: 1px dotted;
+    margin: 130px 0;
+    color: black;
+}
+
+.form .name-page {
+    margin: 20px 0 0 265px;
+}
+
+.form a:hover {
+    color: rgb(123, 0, 255);
+}
+
+.form h2 {
+    margin-bottom: 30px;
+}
+
+.form-profile {
+    margin: auto;
+    width: 65%;
+    justify-content: center;
+    display: flex;
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+.form-profile-container .img-user {
+    margin: 30px 0 0 25px;
+    /* float: left; */
+    width: 150px;
+    height: 150px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.form-profile-container .form-profile-setting {
+    border: 1px solid;
+    border-radius: 30px;
+    margin-right: 115px;
+    padding: 6px;
+    float: right;
+}
+
+.form-profile-info {
+    float: left;
+    margin: 20px;
+    padding: 5px;
+}
+
+.form-profile-chitiet {
+    padding: 10px 0;
+}
+
+.form-profile-chitiet-gioitinh h6 {
+    padding-top: 10px;
+}
+
+.form-profile-chitiet input {
+    width: 400px;
+}
+
+.form-setting{
+    padding-top: 10px;
+    text-align: center;
+}
+
+.form-profile-setting {
+    background-color: blue;
+    color: white;
+    padding: 7px;
+    border-radius: 20px;
+    border: none;
+}
+
+.form-profile-setting a{
+    color: white;
+}
+
+.form-profile-setting a:hover{
+    color: white
+}
+/* 
+.form-profile-setting {
+    padding-top: 10px;
+    text-align: center;
+
+}
+
+.form-profile-setting button {
+    border-radius: 20px;
+    color: white;
+    background-color: blue;
+    border: none;
+}
+
+.form-profile-setting button a {
+    color: white;
+} */

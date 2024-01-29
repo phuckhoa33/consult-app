@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác thực mật khẩu</title>
+    <link rel="stylesheet" href="/css/accuracy.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Xác thực OTP</h2>
+        <form id="otpVerificationForm">
+            <label for="otp">Mã OTP:</label>
+            <input type="text" id="otp" name="otp" required>
+            <button type="submit"><a href="/new_password.html">Xác thực</a></button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("otpVerificationForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            var otp = document.getElementById("otp").value;
+            // Gửi mã OTP đến máy chủ để kiểm tra
+            // Code xử lý xác thực OTP ở đây
+            console.log("Mã OTP đã nhập: " + otp);
+        });
+    </script>
+</body>
+
+</html>

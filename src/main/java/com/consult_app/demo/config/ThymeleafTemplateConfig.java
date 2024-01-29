@@ -27,4 +27,5 @@ public class ThymeleafTemplateConfig {
         emailTemplateResolver.setCacheable(false);
         return emailTemplateResolver;
     }
+
 }
