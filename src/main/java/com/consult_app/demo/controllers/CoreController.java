@@ -11,6 +11,6 @@ import ch.qos.logback.core.model.Model;
 public class CoreController {
     @GetMapping("")
     public String index(Model model) {
-        return "core/home";
+        return "core/index";
     }
 }
