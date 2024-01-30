@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ch.qos.logback.core.model.Model;
 
 @Controller
-@RequestMapping("/consultapp")
+@RequestMapping("/")
 public class CoreController {
     @GetMapping("")
     public String index(Model model) {
         return "core/index";
+    }
+
+    @GetMapping("/doctors")
+    public String displayDoctors() {
+        return "core/list_doctor";
     }
 }

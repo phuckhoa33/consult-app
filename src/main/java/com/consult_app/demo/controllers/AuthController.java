@@ -1,5 +1,6 @@
 package com.consult_app.demo.controllers;
 
+import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,11 @@ public class AuthController {
         LoginForm user = new LoginForm();
         model.addAttribute("user", user);
         return "auth/login";
+    }
+
+    @GetMapping("doctor-admin/login")
+    public String showDoctorAdminLoginForm(Model model) {
+        return "auth/loginadmin";
     }
 
     @GetMapping("/signup")
