@@ -1,6 +1,5 @@
 package com.consult_app.demo.forms;
 
-import com.consult_app.demo.annotations.ValidEmail;
 import com.drew.lang.annotations.NotNull;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -28,10 +27,10 @@ public class SignupForm {
     @NotEmpty
     private String password;
 
+    // @PasswordMatches
     private String matchingPassword;
 
     @NotNull
     @NotEmpty
-    // @ValidEmail
     private String email;
 }

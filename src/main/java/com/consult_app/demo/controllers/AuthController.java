@@ -1,6 +1,5 @@
 package com.consult_app.demo.controllers;
 
-import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,7 +81,9 @@ public class AuthController {
             @ModelAttribute("user") @Valid SignupForm user,
             BindingResult result,
             Model model) {
-
+        if (result.hasErrors()) {
+            return "auth/signup";
+        }
         boolean success = authService.signup(user);
         if (success) {
             return "auth/check-mail";
@@ -96,7 +97,7 @@ public class AuthController {
     public String login(@ModelAttribute("user") @Valid LoginForm user,
             BindingResult result,
             Model model) {
-        AuthenticationReponse reponse = authService.login(user);
+        AuthenticationReponse response = authService.login(user);
         return "auth/login";
 
     }

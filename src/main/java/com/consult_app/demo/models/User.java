@@ -1,5 +1,6 @@
 package com.consult_app.demo.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -11,10 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Builder
 public class User implements UserDetails {
@@ -32,10 +31,16 @@ public class User implements UserDetails {
     private String address;
     private Date createdAt;
     private Date updatedAt;
+    private List<String> roles = new ArrayList<>();
+
+    public User() {
+        roles.add("USER");
+
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("USER_ROLE"));
+        return List.of(new SimpleGrantedAuthority("USER"));
     }
 
     @Override
