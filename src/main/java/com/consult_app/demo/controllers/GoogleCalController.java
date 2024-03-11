@@ -136,7 +136,6 @@ public class GoogleCalController {
                 .setOverrides(Arrays.asList(reminderOverrides));
         event.setReminders(reminders);
         try {
-
             event = client.events().insert(getUserEmail(credential), event).setConferenceDataVersion(1)
                     .execute();
             Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
@@ -175,6 +174,6 @@ public class GoogleCalController {
 
     private String getUserEmail(Credential credential) throws IOException {
 
-        return null;
+        return "phuckhoa81@gmail.com";
     }
 }
