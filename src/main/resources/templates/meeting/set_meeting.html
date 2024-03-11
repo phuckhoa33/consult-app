@@ -43,7 +43,7 @@
 </head>
 <body>
 
-    <form id="conversationForm">
+    <form id="conversationForm" th:action="@{/meeting/create}">
         <label for="name">Your Name:</label>
         <input type="text" id="name" name="name" required>
 
@@ -54,13 +54,7 @@
     </form>
 
     <script>
-        document.getElementById("conversationForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            // Add your JavaScript logic here to handle the form submission
-            // You can use AJAX to send the data to the server or perform any other actions
-            // For a simple demonstration, you can alert the user with their input
-            alert("Name: " + document.getElementById("name").value + "\nMessage: " + document.getElementById("message").value);
-        });
+      
     </script>
 
 </body>

@@ -11,12 +11,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
-
 import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.TokenResponse;
@@ -29,6 +27,7 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar.Events;
+import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.ConferenceData;
 import com.google.api.services.calendar.model.ConferenceSolutionKey;
@@ -58,6 +57,8 @@ public class GoogleCalController {
     private String clientSecret;
     @Value("${google.client.redirectUri}")
     private String redirectURI;
+    @Value("${google.client.createGoogleMeetUri}")
+    private String createGoogleMeetUri;
 
     private Set<Event> events = new HashSet<>();
 
@@ -70,15 +71,17 @@ public class GoogleCalController {
 
     @RequestMapping(value = "/login/google", method = RequestMethod.GET)
     public RedirectView googleConnectionStatus(HttpServletRequest request) throws Exception {
-        return new RedirectView(authorize());
+        return new RedirectView(authorize(redirectURI));
     }
 
     @RequestMapping(value = "/login/google", method = RequestMethod.GET, params = "code")
     public String oauth2Callback(@RequestParam(value = "code") String code) {
         com.google.api.services.calendar.model.Events eventList;
+        TokenResponse response;
         String message;
         try {
-            TokenResponse response = flow.newTokenRequest(code).setRedirectUri(redirectURI).execute();
+            response = flow.newTokenRequest(code).setRedirectUri(redirectURI).execute();
+
             credential = flow.createAndStoreCredential(response, "userID");
             client = new com.google.api.services.calendar.Calendar.Builder(httpTransport, JSON_FACTORY, credential)
                     .setApplicationName(APPLICATION_NAME).build();
@@ -93,11 +96,6 @@ public class GoogleCalController {
                     + " Redirecting to google connection status page.";
         }
 
-        return "meeting/set_meeting";
-    }
-
-    @PostMapping("/meeeting/create")
-    public String createMeetingLink() {
         Event event = new Event()
                 .setSummary("Google I/O 2015")
                 .setLocation("800 Howard St., San Francisco, CA 94103")
@@ -138,21 +136,28 @@ public class GoogleCalController {
                 .setOverrides(Arrays.asList(reminderOverrides));
         event.setReminders(reminders);
         try {
-            event = client.events().insert("himanshuranjan30@gmail.com", event).setConferenceDataVersion(1).execute();
+
+            event = client.events().insert(getUserEmail(credential), event).setConferenceDataVersion(1)
+                    .execute();
+            Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
+                    .setApplicationName(APPLICATION_NAME)
+                    .build();
+
+            System.out.printf("Event created: %s\n", event.getHtmlLink());
+            service.events().insert("primary", event);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.printf("Event created: %s\n", event.getHtmlLink());
 
-        return "meeting/success";
+        return "meeting/set_meeting";
     }
 
     public Set<Event> getEvents() throws IOException {
         return this.events;
     }
 
-    private String authorize() throws Exception {
+    private String authorize(String url) throws Exception {
         AuthorizationCodeRequestUrl authorizationUrl;
         if (flow == null) {
             Details web = new Details();
@@ -163,8 +168,13 @@ public class GoogleCalController {
             flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clientSecrets,
                     Collections.singleton(CalendarScopes.CALENDAR)).build();
         }
-        authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectURI);
+        authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(url);
         System.out.println("cal authorizationUrl->" + authorizationUrl);
         return authorizationUrl.build();
+    }
+
+    private String getUserEmail(Credential credential) throws IOException {
+
+        return null;
     }
 }
