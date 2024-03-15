@@ -197,7 +197,13 @@
             <version>v1-rev537-1.25.0</version>
         </dependency>
     
-        
+        <!-- Solana configuration -->
+        <!-- https://mvnrepository.com/artifact/com.paymennt/solanaj -->
+        <dependency>
+            <groupId>com.paymennt</groupId>
+            <artifactId>solanaj</artifactId>
+            <version>0.0.7</version>
+        </dependency>
 
 
     

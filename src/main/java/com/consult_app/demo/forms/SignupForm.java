@@ -1,6 +1,5 @@
 package com.consult_app.demo.forms;
 
-import com.consult_app.demo.annotations.ValidEmail;
 import com.drew.lang.annotations.NotNull;
 
 import jakarta.validation.constraints.NotEmpty;
