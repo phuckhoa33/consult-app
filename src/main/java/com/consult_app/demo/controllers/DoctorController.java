@@ -10,11 +10,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DoctorController {
     @GetMapping("/{doctorId}")
     public String displayDoctorDetail(@PathVariable String doctorId) {
-        return "core/details_doctor";
+        return "doctor/profile";
     }
 
     @GetMapping("appointment")
     public String displayAppointment() {
-        return "core/appointment";
+        return "doctor/inf-appointment";
+    }
+
+    @GetMapping("accepted-appointment")
+    public String showAcceptedAppointment() {
+        return "doctor/list_accept_appointment";
+    }
+
+    @GetMapping("refused-appointment")
+    public String showRefusedAppointment() {
+        return "doctor/list_refuse_appointment";
+    }
+
+    @GetMapping("analyze")
+    public String showAssessmentDoctorPerformance() {
+        return "doctor/charts_doctor";
     }
 }

@@ -1,6 +1,5 @@
 package com.consult_app.demo.controllers;
 
-import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,14 +95,14 @@ public class AuthController {
     public String login(@ModelAttribute("user") @Valid LoginForm user,
             BindingResult result,
             Model model) {
-        AuthenticationReponse reponse = authService.login(user);
+        authService.login(user);
         return "auth/login";
 
     }
 
     @PostMapping("/forgot-password")
     public String commitForgotPassword(@ModelAttribute("email") String email) {
-        String result = authService.sendEmailForForgotPassword(email);
+        authService.sendEmailForForgotPassword(email);
         return "auth/forgot-password";
     }
 
@@ -115,4 +114,5 @@ public class AuthController {
         model.addAttribute("form", form);
         return "auth/reset-password";
     }
+
 }

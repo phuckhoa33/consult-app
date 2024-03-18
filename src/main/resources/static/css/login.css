@@ -107,6 +107,14 @@ section {
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
 }
+.admin-tabcontent {
+    text-align: center;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border: none;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
 
 /* .h3 {
     padding: 50px;
