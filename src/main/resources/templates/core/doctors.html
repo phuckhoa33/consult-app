@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors List</title>
+</head>
+<body>
+    <h2>Doctors List</h2>
+  <!--  <table border="1">
+        <thead>
+            <tr>
+                <th>Doctor ID</th>
+                <th>User ID</th>
+                <th>Experience</th>
+                <th>Services Offered</th>
+                <th>Bio ID</th>
+                <th>Education</th>
+                <th>Status</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="doctor : ${doctors}">
+                <td th:text="${doctor.doctorId}"></td>
+                <td th:text="${doctor.userId}"></td>
+                <td th:text="${doctor.experience}"></td>
+                <td th:text="${doctor.servicesOffered}"></td>
+                <td th:text="${doctor.bioId}"></td>
+                <td th:text="${doctor.education}"></td>
+                <td th:text="${doctor.status}"></td>
+                <td th:text="${doctor.rating}"></td>
+            </tr>
+        </tbody>
+    </table> -->
+     <h1>Create Doctor</h1>
+
+  <label>Email:</label>
+        <input type="text" th:field="*{email}"/>
+
+        <label>Username:</label>
+        <input type="text" th:field="*{username}"/>
+
+        <label>Password:</label>
+        <input type="password" th:field="*{password}"/>
+
+        <label>First Name:</label>
+        <input type="text" th:field="*{firstname}"/>
+
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastname}"/>
+
+        <label>Avatar:</label>
+        <input type="text" th:field="*{avatar}"/>
+
+        <label>Phone Number:</label>
+        <input type="text" th:field="*{phoneNumber}"/>
+
+        <label>Date of Birth:</label>
+        <input type="text" th:field="*{dateOfBirth}"/>
+
+        <label>Gender:</label>
+        <input type="checkbox" th:field="*{gender}"/>
+
+        <label>Ban:</label>
+        <input type="checkbox" th:field="*{ban}"/>
+
+        <label>Address:</label>
+        <input type="text" th:field="*{address}"/>
+
+        <label>Experience:</label>
+        <input type="text" th:field="*{experience}"/>
+
+        <label>Education:</label>
+        <input type="text" th:field="*{education}"/>
+        <button type="submit">Create Doctor</button>
+
+</body>
+</html>

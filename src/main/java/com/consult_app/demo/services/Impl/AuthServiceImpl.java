@@ -46,10 +46,11 @@ public class AuthServiceImpl implements AuthService {
             User newUser = User.builder()
                     .firstname(request.getFirstname())
                     .lastname(request.getLastname())
-                    .password(request.getPassword())
+                    .password(request.getPassword().trim())
                     .username(request.getUsername())
                     .email(request.getEmail())
                     .build();
+
             boolean success = userService.checkExistUser(newUser);
             if (success) {
 
@@ -69,7 +70,7 @@ public class AuthServiceImpl implements AuthService {
             }
         } catch (Exception e) {
             // TODO: handle
-            e.printStackTrace();
+        	System.err.println(e);
             return false;
         }
     }

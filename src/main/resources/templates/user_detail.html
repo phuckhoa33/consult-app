@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Detail</title>
+    <style>
+		body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+	</style>
+</head>
+<body>
+
+ <h1>User Detail</h1>
+
+<div class="user-details">
+    <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+    <p><strong>Username:</strong> <span th:text="${user.username}"></span></p>
+    <p><strong>First Name:</strong> <span th:text="${user.firstname}"></span></p>
+    <p><strong>Last Name:</strong> <span th:text="${user.lastname}"></span></p>
+    <p><strong>Avatar:</strong> <span th:text="${user.avatar}"></span></p>
+    <p><strong>Phone Number:</strong> <span th:text="${user.phoneNumber}"></span></p>
+    <p><strong>Date of Birth:</strong> <span th:text="${user.dateOfBirth}"></span></p>
+    <p><strong>Gender:</strong> <span th:text="${user.gender} ? 'Male' : 'Female'"></span></p>
+    <p><strong>Address:</strong> <span th:text="${user.address}"></span></p>
+   </div>
+
+<a th:href="@{'/users/update/' + ${user.userId}}">Update</a>
+
+<a th:href="@{/users}">Back to Users List</a>
+
+</body>
+</html>

@@ -1,14 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
 .form {
-    /* display: grid;
-    grid-template-columns: auto auto auto auto; */
-    margin: 150px 0;
     justify-content: space-between;
-    /* display: flex; */
     align-items: center;
 }
 
@@ -20,10 +16,6 @@
     color: #999999;
 }
 
-/* .form #page-link :hover {
-    color: rgb(123, 0, 255);
-} */
-
 .form a:hover {
     color: rgb(123, 0, 255);
 }
@@ -33,23 +25,20 @@
 }
 
 .form-profile {
-    /* width: 100%; */
-    /* display: flex; */
     color: black;
     margin: auto;
-    height: 800px;
-    width: 70%;
-    border: 1px solid;
+    /* height: 800px; */
+    height: 100%;
+    width: 80%;
     border-radius: 20px;
 }
 
 .img-user {
     padding-top: 30px;
-   /* margin: auto; */
-   text-align: center;
+    text-align: center;
 }
 
-.img-user img{
+.img-user img {
     width: 150px;
     height: 150px;
     border: 1px solid;
@@ -79,15 +68,16 @@
 
 .form-profile-chitiet input {
     width: 400px;
+    height: 35px;
+    border-radius: 5px;
+    padding: 2px 0 2px 5px;
 }
 
 .logo1 {
     width: 45%;
-    /* display: flex; */
     text-align: center;
     float: right;
     padding-top: 100px;
-    /* flex-basis: 50%; */
 }
 
 .logo1 img {
@@ -97,13 +87,15 @@
 .complete {
     padding-top: 10px;
     text-align: center;
-    
+
 }
 
 .complete button {
     border-radius: 20px;
     color: white;
-    background-color: blue;
+    background-color: rgb(43, 83, 197);
+    margin-bottom: 20px;
+    padding: 5px 10px;
     border: none;
 }
 

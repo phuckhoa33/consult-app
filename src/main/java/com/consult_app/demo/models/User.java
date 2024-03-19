@@ -8,15 +8,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.consult_app.demo.enums.DoctorStatus;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
+@Getter
+@Setter
 public class User implements UserDetails {
     private long userId;
     private String email;
@@ -26,7 +32,7 @@ public class User implements UserDetails {
     private String lastname;
     private String avatar;
     private String phoneNumber;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private boolean gender;
     private boolean ban;
     private String address;

@@ -1,6 +1,8 @@
 package com.consult_app.demo.services.Impl;
 
 import java.nio.CharBuffer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import com.consult_app.demo.models.User;
 import com.consult_app.demo.services.CommonService;
 import com.consult_app.demo.services.UserService;
 
+import jakarta.validation.Valid;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -21,6 +25,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -31,7 +36,6 @@ public class UserServiceImpl implements UserService {
         Date createdAt = new Date();
 
         String hashPassword = passwordEncoder.encode(CharBuffer.wrap(user.getPassword()));
-
         user.setUserId(userId);
         user.setCreatedAt(createdAt);
         user.setPassword(hashPassword);
@@ -42,6 +46,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
+    	System.err.println(userMapper.getUserByEmail(email));
         return userMapper.getUserByEmail(email);
     }
 
@@ -51,13 +56,6 @@ public class UserServiceImpl implements UserService {
         throw new UnsupportedOperationException("Unimplemented method 'getUserByUsername'");
     }
 
-    @Override
-    public String updateUser(User user) {
-        Date updatedAt = new Date();
-        user.setUpdatedAt(updatedAt);
-
-        return "Update is successfully";
-    }
 
     @Override
     public String deleteSoftUser(User user) {
@@ -74,12 +72,50 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkExistUser(User user) {
         User oldUserByEmail = userMapper.getUserByEmail(user.getEmail());
-        User oldUserByUsername = userMapper.getUserByUserName(user.getUsername());
+        User oldUserByUsername = userMapper.getUserByUserName(user.getUsername().trim());
         if (oldUserByEmail != null || oldUserByUsername != null) {
             return false;
         }
 
         return true;
     }
+
+	@Override
+	public User getUserById(Long userId) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserById(userId);
+	}
+
+	@Override
+	public boolean isUserWithEmailExists(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateUser(Long userId,  User user) {
+try {
+	Date now=new Date();
+	String hashPassword = passwordEncoder.encode(CharBuffer.wrap(user.getPassword().trim()));
+
+	user.setUserId(userId);
+	user.setPassword(hashPassword);
+	user.setUpdatedAt(now);
+	System.err.println(user);
+	userMapper.updateUser(user);
+	return true;
+} catch (Exception e) {
+	// TODO: handle exception
+	return false;
+}
+    	
+   
+	}
+
+	@Override
+	public String updateUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

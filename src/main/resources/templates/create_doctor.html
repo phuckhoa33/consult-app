@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<!-- Meta tags, title, etc. -->
+	<title>Create Doctor</title>
+	  <style>
+	 body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+} </style>
+</head>
+
+<body>
+
+	<h1>Create Doctor</h1>
+
+<!-- Hiển thị thông báo lỗi nếu có -->
+<p th:if="${message}" th:text="${message}" style="color: red;"></p>
+
+<form th:action="@{/doctors/create}" method="post" th:object="${doctorForm}">
+    <div class="form-group">
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" name="userId" th:field="*{userId}">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:field="*{username}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:field="*{password}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" th:field="*{firstname}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" th:field="*{lastname}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="avatar">Avatar:</label>
+        <input type="file" id="avatar" name="avatar" required>
+    </div>
+		<div class="form-group">
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required>
+</div>
+
+<div class="form-group">
+    <label for="dateOfBirth">Date of Birth:</label>
+    <input type="date" id="dateOfBirth" name="dateOfBirth" th:field="*{dateOfBirth}" required>
+</div>
+
+<div class="form-group">
+    <label>Gender:</label>
+    <label for="male">Male</label>
+    <input type="radio" id="male" name="gender" th:field="*{gender}" value="true">
+    
+    <label for="female">Female</label>
+    <input type="radio" id="female" name="gender" th:field="*{gender}" value="false">
+</div>
+
+<div class="form-group">
+    <label for="ban">Ban:</label>
+    <input type="checkbox" id="ban" name="ban" th:field="*{ban}">
+</div>
+
+<div class="form-group">
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" th:field="*{address}" required>
+</div>
+
+<div class="form-group">
+    <label for="experience">Experience:</label>
+    <input type="text" id="experience" name="experience" th:field="*{experience}" required>
+</div>
+
+<div class="form-group">
+    <label for="education">Education:</label>
+    <input type="text" id="education" name="education" th:field="*{education}" required>
+</div>
+
+<div class="form-group">
+    <label for="servicesOffered">Services Offered:</label>
+    <input type="text" id="servicesOffered" name="servicesOffered" th:field="*{servicesOffered}" required>
+</div>
+
+<div class="form-group">
+    <label for="bioId">Bio ID:</label>
+    <input type="number" id="bioId" name="bioId" th:field="*{bioId}" required>
+</div>
+
+<div class="form-group">
+    <label for="status">Status:</label>
+    <select id="status" name="status" th:field="*{status}">
+        <option value="ACTIVE">Active</option>
+        <option value="INACTIVE">Inactive</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="rating">Rating:</label>
+    <input type="number" id="rating" name="rating" th:field="*{rating}" required>
+</div>
+
+		<div class="form-group">
+        <button type="submit">Register</button>
+    </div>
+	</form>
+
+	<a th:href="@{/doctors}">Back to Doctors List</a>
+
+</body>
+
+</html>

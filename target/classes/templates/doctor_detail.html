@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Detail</title>
+    <style>
+		body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+	</style>
+</head>
+<body>
+
+    <h1>Doctor Detail</h1>
+<div>
+    <p><strong>Doctor ID:</strong> <span th:text="${doctor.doctorId}"></span></p>
+    <p><strong>User ID:</strong> <span th:text="${doctor.userId}"></span></p>
+    <p><strong>Experience:</strong> <span th:text="${doctor.experience}"></span></p>
+    <p><strong>Education:</strong> <span th:text="${doctor.education}"></span></p>
+    <p><strong>Services Offered:</strong> <span th:text="${doctor.servicesOffered}"></span></p>
+    <p><strong>Bio ID:</strong> <span th:text="${doctor.bioId}"></span></p>
+    <p>Status: <span th:text="${doctor.status}"></span></p>
+    <p>Rating: <span th:text="${doctor.rating}"></span></p>
+</div>
+	<a th:href="@{'/doctors/update/' + ${doctor.doctorId}}">Update</a>
+
+    <a th:href="@{/doctors}">Back to Doctors List</a>
+
+</body>
+</html>

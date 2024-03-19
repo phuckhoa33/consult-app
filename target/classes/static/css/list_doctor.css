@@ -83,7 +83,6 @@
 .products__item img {
     width: 50%;
     border: 1px solid black;
-    border-radius: 50%;
     overflow: hidden;
 }
 
@@ -179,7 +178,6 @@
     width: 120px;
     padding-top: 7px;
     border: none;
-    border-radius: 50%;
     overflow: hidden;
 }
 
@@ -190,7 +188,7 @@
     border: none;
 }
 
-.products__item a{
+.products__item a {
     color: white;
 }
 

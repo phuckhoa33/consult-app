@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.consult_app.demo.mappers.DoctorMapper">
+
+    <!-- Result Map for Doctor Entity -->
+    <resultMap id="doctorResultMap" type="com.consult_app.demo.models.Doctor">
+        <result property="doctorId" column="doctor_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="servicesOffered" column="services_offered"/>
+        <result property="experience" column="experience"/>
+        <result property="bioId" column="bio_id"/>
+        <result property="education" column="education"/>
+        <result property="status" column="status"/> <!-- Map DoctorStatus enum -->
+        <result property="rating" column="rating"/>
+    </resultMap>
+
+   <!-- Select DoctogetAllDoctorsr by ID -->
+<select id="getDoctorById" resultMap="doctorResultMap">
+    SELECT * FROM "Doctor" WHERE doctor_id = #{doctorId}
+</select>
+
+<!-- Select all doctors -->
+<select id="getAllDoctors" resultMap="doctorResultMap">
+    SELECT * FROM "Doctor"
+</select>
+
+
+   <!-- Create Doctor -->
+<insert id="createDoctor">
+    INSERT INTO "Doctor" (
+    	doctor_id,
+        user_id, 
+        experience, 
+        services_offered,
+        bio_id,
+        education, status, rating
+    )
+    VALUES (
+    	#{doctorId},
+        #{userId}, 
+        #{experience}, 
+        #{servicesOffered},
+        #{bioId},
+        #{education}, 
+        #{status}, 
+        #{rating}
+        
+    )
+</insert>
+
+
+    <!-- Update Doctor -->
+    <update id="updateDoctor">
+        UPDATE "Doctor"
+        SET
+        	doctor_id = #{doctorId},       
+        	user_id = #{userId},
+        	services_offered = #{servicesOffered},
+        	bio_id = #{bioId},
+            experience = #{experience},
+            education = #{education},
+            status = #{status},
+            rating = #{rating}
+        WHERE doctor_id = #{doctorId}
+    </update>
+</mapper>

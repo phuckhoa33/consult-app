@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.appointment-list {
+    margin: 20px;
+}
+
+.appointment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.appointment-info {
+    flex-grow: 1;
+}
+
+.agree-button {
+    background-color: green;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.agree-button:hover {
+    background-color: rgb(90, 226, 90);
+}
+
+.cancel-button {
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background-color: rgb(242, 122, 122);
+}
