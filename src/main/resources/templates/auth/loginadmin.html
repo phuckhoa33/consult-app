@@ -78,80 +78,41 @@
 	<section>
 		<div class="container-fluid">
 			<div class="tab">
-				<button class="tablinks" onclick="openCity(event, 'Login')">Login</button>
-				<div>
-					<a href="register.html">
-						<button class="tablinks" onclick="openCity(event, 'Register')">Register</button>
-					</a>
-				</div>
-			</div>
-
-			<div id="Login" class="tabcontent">
-				<h3>Login</h3>
-				<form class="form" action="">
-					<input type="text" placeholder="Email / Mobile">
-
-					<!-- hide password -->
-					<div class="hidden">
-						<input type="password" placeholder="Password" required>
-						<span class="show-btn"><i class="fas fa-eye"></i></span>
-
-						<!-- <input type="password" placeholder="Password">
-                        <span class="show-btn"><i class="fas fa-eye"></i></span> -->
-
-
-						<!-- <input id="upass" type="password" name="userpass" placeholder="Password" required>
-                        <input id="toggleBtn" type="button" onclick="togglePassword()" value="Show Password Characters"> -->
-
+				
+				<div id="Login" class="admin-tabcontent">
+					<h3>Login</h3>
+					<form class="form" action="">
+						<input type="text" placeholder="Email / Mobile">
+	
+						<!-- hide password -->
+						<div class="hidden">
+							<input type="password" placeholder="Password" required>
+							<span class="show-btn"><i class="fas fa-eye"></i></span>
+	
+							<!-- <input type="password" placeholder="Password">
+							<span class="show-btn"><i class="fas fa-eye"></i></span> -->
+	
+	
+							<!-- <input id="upass" type="password" name="userpass" placeholder="Password" required>
+							<input id="toggleBtn" type="button" onclick="togglePassword()" value="Show Password Characters"> -->
+	
+						</div>
+					</form>
+	
+					<div class="radio-button">
+						<input type="radio"> Admin
+						<input type="radio"> Doctor
 					</div>
-				</form>
-
-				<div class="radio-button">
-					<input type="radio"> Admin
-					<input type="radio"> Doctor
-				</div>
-
-				<div>
-					<a href="forgot_password.html" class="text-right">Forgot Password?</a>
-					<!-- <a href="" class="text-right">Login with SMS</a> -->
-				</div>
-
-				<div>
-					<a href="/">
-						<button class="button-red">
-							Login
-							<!-- <i class="fa-solid fa-chevron-right"></i> -->
-						</button>
-					</a>
-				</div>
-
-				<div id="or">
-					<div class="or">
-						<hr>
+	
+					<div>
+						<a href="/">
+							<button class="button-red">
+								Login
+								<!-- <i class="fa-solid fa-chevron-right"></i> -->
+							</button>
+						</a>
 					</div>
-					<div class="or">Or</div>
-					<div class="or">
-						<hr>
-					</div>
-				</div>
-
-				<div class="button-blue">
-					<div class="button-blue1">
-						<button class="button-blue2">
-							<i class="fa-brands fa-square-facebook"></i>
-							Facebook
-							<!-- <img src="/img/logo-fb.png" alt=""> -->
-						</button>
-						<button class="button-blue2">
-							<i class="fa-brands fa-google"></i>
-							Google
-						</button>
-					</div>
-				</div>
-
-				<div class="checkbox">
-					Bạn đã
-					<input type="checkbox"><a href=""> chấp nhận điều khoản sử dụng</a>
+	
 				</div>
 			</div>
 
@@ -286,18 +247,6 @@
 
 </body>
 
-<script>
-	const passField = document.querySelector("password");
-	const showBtn = document.querySelector("span i");
-	showBtn.onclick = (() => {
-		if (passField.type === "password") {
-			passField.type = "text";
-			showBtn.classList.add("hide-btn");
-		} else {
-			passField.type = "password";
-			showBtn.classList.remove("hide-btn");
-		}
-	});
-</script>
+
 
 </html>
