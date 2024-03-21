@@ -18,4 +18,11 @@ public class CoreController {
     public String displayDoctors() {
         return "core/list_doctor";
     }
+
+    @GetMapping("schedule-consult")
+    public String getAppointment() {
+
+        return "core/appointment";
+    }
+
 }

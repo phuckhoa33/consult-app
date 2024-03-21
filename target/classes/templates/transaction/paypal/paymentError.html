@@ -1,0 +1,35 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Paypal Integration</title>
+
+</head>
+
+<body>
+<div class="container">
+    <h1 class="text-center mt-5 text-danger">Payment Error</h1>
+    <p class="text-center mt-3">An error occurred during the payment. Please try again</p>
+    <div class="d-flex justify-content-center mt-5">
+        <a href="/" class="btn btn-primary">
+            Back to Home
+        </a>
+    </div>
+</div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+    <h2>Error</h2>
+    <p th:text="${error}"></p>
+    <!-- Display the error message -->
+</body>
+</html>
+
