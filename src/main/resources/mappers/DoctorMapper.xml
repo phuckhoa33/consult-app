@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.consult_app.demo.mappers.DoctorMapper">
+
+    <resultMap id="doctorResultMap" type="com.consult_app.demo.models.Doctor">
+        <result column="doctor_id" property="doctorId"/>
+        <result column="user_id" property="userId"/>
+        <result column="experience" property="experience"/>
+        <result column="services_offered" property="servicesOffered"/>
+        <result column="bio_id" property="bioId"/>
+        <result column="education" property="education"/>
+        <result column="status" property="status"/>
+        <result column="rating" property="rating"/>
+
+    </resultMap>
+
+    <select id="getDoctorByDoctorId" resultMap="doctorResultMap">
+        SELECT usr.doctor_id
+             , usr.user_id
+             , usr.experience
+             , usr.services_offered
+             , usr.bioId
+             , usr.education
+             , usr.status
+             , usr.rating
+        FROM "Doctor" usr
+        WHERE usr.doctor_id = #{doctorId}
+    </select>
+
+
+    <select id="getDoctors" resultMap="doctorResultMap">
+        SELECT usr.doctor_id
+             , usr.user_id
+             , usr.experience
+             , usr.services_offered
+             , usr.bio_id
+             , usr.education
+             , usr.status
+             , usr.rating
+        FROM "Doctor" usr
+    </select>
+
+    <insert id="createDoctor">
+		INSERT INTO "Doctor"  VALUES (
+		#{doctorId}
+		, #{userId}
+		, #{experience}
+		, #{servicesOffered}
+		, #{bioId}
+		, #{education}
+		, #{status}
+        , #{rating}
+
+		)
+
+
+
+	</insert>
+    <update id="updateDoctor">
+        UPDATE "Doctor"
+        SET experience = #{experience},
+            avatar = #{avatar},
+            services_offered = #{servicesOffered},
+            bio_id = #{bioId},
+            education = #{education},
+            status = #{status},
+            rating = #{rating}
+        WHERE doctor_id=#{id}
+    </update>
+</mapper>

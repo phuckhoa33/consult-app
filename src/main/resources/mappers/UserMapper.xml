@@ -40,6 +40,25 @@
         FROM "User" usr
         WHERE usr.username = #{username}
     </select>
+
+    <select id="getUserByUserId" resultMap="userResultMap">
+        SELECT usr.user_id
+             , usr.email
+             , usr.username
+             , usr.password
+             , usr.firstname
+             , usr.lastname
+             , usr.avatar
+             , usr.phone_number
+             , usr.date_of_birth
+             , usr.gender
+             , usr.address
+             , usr.ban
+             , usr.created_at
+             , usr.updated_at
+        FROM "User" usr
+        WHERE usr.user_id = #{userId}
+    </select>
     
     <select id="getUserByEmail" resultMap="userResultMap">
         SELECT usr.user_id

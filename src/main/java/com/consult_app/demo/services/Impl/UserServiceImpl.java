@@ -82,4 +82,10 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public User getUserByUserId(String userId) {
+        // TODO Auto-generated method stub
+        return userMapper.getUserByUserId(Integer.parseInt(userId));
+    }
+
 }

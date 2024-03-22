@@ -1,6 +1,4 @@
-package com.consult_app.demo.models;
-
-import com.consult_app.demo.enums.DoctorStatus;
+package com.consult_app.demo.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +7,9 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Builder
-public class Doctor {
+@Data
+public class DoctorInformation {
     private String doctorId;
     private String userId;
     private String experience;
@@ -20,4 +18,5 @@ public class Doctor {
     private String education;
     private String status;
     private Double rating;
+    private String fullname;
 }

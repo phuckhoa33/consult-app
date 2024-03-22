@@ -11,6 +11,8 @@ public interface UserService {
 
     User getUserByUsername(String username);
 
+    User getUserByUserId(String userId);
+
     String updateUser(User user);
 
     String deleteSoftUser(User user);
