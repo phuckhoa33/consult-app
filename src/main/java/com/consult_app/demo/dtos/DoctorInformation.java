@@ -19,4 +19,5 @@ public class DoctorInformation {
     private String status;
     private Double rating;
     private String fullname;
+    private int pages;
 }

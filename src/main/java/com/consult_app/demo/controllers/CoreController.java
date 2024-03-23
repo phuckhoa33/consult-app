@@ -23,13 +23,14 @@ public class CoreController {
         return "core/index";
     }
 
-    @GetMapping("/doctors/{page}")
+    @GetMapping("/doctors/{page}/{filter}")
     public String displayDoctors(Model model, @PathVariable String page) {
         List<DoctorInformation> doctors = doctorService.getDoctors(Integer.parseInt(page));
         List<String> services = doctorService.getDistinctServicesOffered();
-        System.out.println(services.size());
-        model.addAttribute("doctors", doctors.subList(0, 8));
+        model.addAttribute("doctors", doctors);
         model.addAttribute("services", services);
+        model.addAttribute("amount", doctors.get(0).getPages());
+        model.addAttribute("currentPage", page.trim());
         return "core/list_doctor";
     }
 

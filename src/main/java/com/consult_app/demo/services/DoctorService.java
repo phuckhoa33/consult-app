@@ -15,4 +15,6 @@ public interface DoctorService {
     String createDoctor(Doctor doctor);
 
     String updateDoctor(Doctor doctor);
+
+    int getDoctorPageAmount(List<Doctor> doctors);
 }

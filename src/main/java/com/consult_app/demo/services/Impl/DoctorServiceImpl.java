@@ -24,9 +24,14 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<DoctorInformation> getDoctors(int range) {
         List<Doctor> doctors = doctorMapper.getDoctors();
+
+        int pages = getDoctorPageAmount(doctors);
+
         List<DoctorInformation> doctorInformations = new ArrayList<>();
 
-        for (int i = 0; i < doctors.size(); i++) {
+        int endIndex = range * 8;
+
+        for (int i = endIndex - 8; i < endIndex; i++) {
             Doctor currentDoctor = doctors.get(i);
             User user = userService.getUserByUserId(String.valueOf(currentDoctor.getUserId()));
             String fullname = user.getFirstname() + user.getLastname();
@@ -40,6 +45,7 @@ public class DoctorServiceImpl implements DoctorService {
                     .servicesOffered(currentDoctor.getServicesOffered())
                     .fullname(fullname)
                     .userId(currentDoctor.getUserId())
+                    .pages(pages)
                     .build();
             doctorInformations.add(doctorInfor);
         }
@@ -76,6 +82,15 @@ public class DoctorServiceImpl implements DoctorService {
         }
         Set<String> distinctServices = Set.copyOf(servicesOffereds);
         return List.copyOf(distinctServices);
+    }
+
+    @Override
+    public int getDoctorPageAmount(List<Doctor> doctors) {
+        int doctorAmount = doctors.size();
+
+        int pageAmount = (int) Math.ceil(doctorAmount / 8);
+
+        return pageAmount;
     }
 
 }
