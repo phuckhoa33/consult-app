@@ -6,7 +6,7 @@ import com.consult_app.demo.dtos.DoctorInformation;
 import com.consult_app.demo.models.Doctor;
 
 public interface DoctorService {
-    List<DoctorInformation> getDoctors(int range);
+    List<DoctorInformation> getDoctors(int range, String filter);
 
     Doctor getDoctorByDoctorId(String doctorId);
 

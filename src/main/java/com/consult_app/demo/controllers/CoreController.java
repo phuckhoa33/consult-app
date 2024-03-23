@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.consult_app.demo.dtos.DoctorInformation;
 import com.consult_app.demo.services.DoctorService;
 
+import jakarta.ws.rs.Path;
+
 @Controller
 @RequestMapping("/")
 public class CoreController {
@@ -24,8 +26,10 @@ public class CoreController {
     }
 
     @GetMapping("/doctors/{page}/{filter}")
-    public String displayDoctors(Model model, @PathVariable String page) {
-        List<DoctorInformation> doctors = doctorService.getDoctors(Integer.parseInt(page));
+    public String displayDoctors(Model model, @PathVariable("page") String page,
+            @PathVariable("filter") String filter) {
+
+        List<DoctorInformation> doctors = doctorService.getDoctors(Integer.parseInt(page), filter);
         List<String> services = doctorService.getDistinctServicesOffered();
         model.addAttribute("doctors", doctors);
         model.addAttribute("services", services);

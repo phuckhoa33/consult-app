@@ -341,3 +341,9 @@
 
 })(jQuery);
 
+
+function redirectToPage(selectElement) {
+	var selectedOption = selectElement.options[selectElement.selectedIndex];
+	var selectedValue = selectedOption.value;
+	window.location.href = selectedValue;
+}

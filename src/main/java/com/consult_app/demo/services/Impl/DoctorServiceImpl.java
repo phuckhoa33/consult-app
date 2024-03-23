@@ -3,6 +3,7 @@ package com.consult_app.demo.services.Impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,16 +23,27 @@ public class DoctorServiceImpl implements DoctorService {
     UserService userService;
 
     @Override
-    public List<DoctorInformation> getDoctors(int range) {
+    public List<DoctorInformation> getDoctors(int range, String filter) {
         List<Doctor> doctors = doctorMapper.getDoctors();
 
+        int endIndex;
+        int startIndex;
+        if (!filter.equals("none")) {
+            doctors = doctors.stream()
+                    .filter(doctor -> doctor.getServicesOffered().contains(filter))
+                    .collect(Collectors.toList());
+
+            endIndex = doctors.size();
+            startIndex = 0;
+        } else {
+            endIndex = range * 8;
+            startIndex = endIndex - 8;
+        }
         int pages = getDoctorPageAmount(doctors);
 
         List<DoctorInformation> doctorInformations = new ArrayList<>();
 
-        int endIndex = range * 8;
-
-        for (int i = endIndex - 8; i < endIndex; i++) {
+        for (int i = startIndex; i < endIndex; i++) {
             Doctor currentDoctor = doctors.get(i);
             User user = userService.getUserByUserId(String.valueOf(currentDoctor.getUserId()));
             String fullname = user.getFirstname() + user.getLastname();

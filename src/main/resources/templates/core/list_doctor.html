@@ -91,10 +91,10 @@
             <h2>Chọn Bác Sĩ</h2>
             <div class="search1">
                 <p>Chuyên khoa</p>
-                <select name="cate" class="formlist" fdprocessedid="i1i7g">
-                    <option value="all">Tất cả</option>
+                <select name="cate" class="formlist" fdprocessedid="i1i7g" onchange="redirectToPage(this);">
+                    <option th:value="/doctors/1/none">Tất cả</option>
                     <div  th:each="service : ${services}">
-                        <option value="13" th:text="${service}"></option>
+                        <option th:value="'/doctors/' + ${currentPage} + '/' + ${service}"  th:text="${service}"></option>
                     </div>
                 </select>
             </div>
