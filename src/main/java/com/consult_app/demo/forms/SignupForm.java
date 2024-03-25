@@ -27,10 +27,10 @@ public class SignupForm {
     @NotEmpty
     private String password;
 
+    // @PasswordMatches
     private String matchingPassword;
 
     @NotNull
     @NotEmpty
-    // @ValidEmail
     private String email;
 }

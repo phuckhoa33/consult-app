@@ -7,7 +7,7 @@ import com.consult_app.demo.models.Admin;
 
 @Mapper
 public interface AdminMapper {
-    Admin getAdminByUserId(@Param("userId") String userId);
+    Admin getAdminByUserId(@Param("userId") long userId);
 
     Admin getAdminByEmail(@Param("email") String email);
 }

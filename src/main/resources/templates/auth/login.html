@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<title>Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-	<link rel="stylesheet" th:href="@{/css/open-iconic-bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/animate.css}">
-	<link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
-	<link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
-	<link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
-	<link rel="stylesheet" th:href="@{/css/aos.css}">
-	<link rel="stylesheet" th:href="@{/css/ionicons.min.css}">
-	<link rel="stylesheet" th:href="@{/css/flaticon.css}">
-	<link rel="stylesheet" th:href="@{/css/icomoon.css}">
-	<link rel="stylesheet" th:href="@{/css/style.css}">
-	<link rel="stylesheet" th:href="@{/css/login.css}">
-	<script th:src="@{/js/login.js}"></script>
-	<link rel="icon" th:href="@{/images/logo.png}" type="image/png">
+	<link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="/css/animate.css">
+	<link rel="stylesheet" href="/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+	<link rel="stylesheet" href="/css/aos.css">
+	<link rel="stylesheet" href="/css/ionicons.min.css">
+	<link rel="stylesheet" href="/css/flaticon.css">
+	<link rel="stylesheet" href="/css/icomoon.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/login.css">
+	<script src="/js/login.js"></script>
+	<link rel="icon" href="/images/logo.png" type="image/png">
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -40,9 +39,13 @@
 							<span class="text">youremail@email.com</span>
 						</div>
 						<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
-							<p class="mb-0 register-link">
+							
+							<p sec:authorize="isAnonymous()" class="mb-0 register-link">
 								<a href="/auth/signup" class="mr-3">Sign Up</a>
 								<a href="/auth/login">Sign In</a>
+							</p>
+							<p sec:authorize="isAuthenticated()" class="mb-0 register-link">
+								<a href="/auth/logout" class="mr-3">Logout</a>
 							</p>
 						</div>
 					</div>
@@ -79,104 +82,113 @@
 
 	<section>
 		<div class="container-fluid">
-			<div class="tab">
-				<button class="tablinks" onclick="openCity(event, 'Login')">Login</button>
-				<div>
-					<a href="/auth/signup">
-						<button class="tablinks" onclick="openCity(event, 'Register')">Register</button>
-					</a>
-				</div>
-			</div>
+			<div sec:authorize="isAnonymous()">
 
-			<div id="Login" class="tabcontent">
 				<div th:if="${param.error}">
-					<div class="alert alert-danger">Invalid Email and Password.</div>
+					<div class="alert alert-danger text-center fw-bold">Invalid Email and Password.</div>
 				</div>
 				<div th:if="${param.logout}">
-					<div class="alert alert-success">You have been logged out.</div>
+					<div class="alert alert-success text-center fw-bold">You have been logged out.</div>
 				</div>
-				<h3>Login</h3>
-				<form class="form" th:action="@{/login}">
-					<input type="text" name="email" placeholder="Email / Mobile">
-
-					<!-- hide password -->
-					<div class="hidden">
-						<input type="password" name="password" placeholder="Password" required>
-						<span class="show-btn"><i class="fas fa-eye"></i></span>
-
-						<!-- <input type="password" placeholder="Password">
-                        <span class="show-btn"><i class="fas fa-eye"></i></span> -->
-
-
-						<!-- <input id="upass" type="password" name="userpass" placeholder="Password" required>
-                        <input id="toggleBtn" type="button" onclick="togglePassword()" value="Show Password Characters"> -->
-
-					</div>
-				</form>
-
-				<div>
-					<a href="/auth/forgot-password" class="text-right">Forgot Password?</a>
-					<!-- <a href="" class="text-right">Login with SMS</a> -->
-				</div>
-
-				<div>
-					<a href="/">
-						<button class="button-red">
-							Login
-							<!-- <i class="fa-solid fa-chevron-right"></i> -->
-						</button>
-					</a>
-				</div>
-
-				<div id="or">
-					<div class="or">
-						<hr>
-					</div>
-					<div class="or">Or</div>
-					<div class="or">
-						<hr>
+				<div class="tab">
+					<button class="tablinks" onclick="openCity(event, 'Login')">Login</button>
+					<div>
+						<a href="/auth/signup">
+							<button class="tablinks" onclick="openCity(event, 'Register')">Signup</button>
+						</a>
 					</div>
 				</div>
-
-				<div class="button-blue">
-					<div class="button-blue1">
-						<button class="button-blue2">
-							<i class="fa-brands fa-square-facebook"></i>
-							Facebook
-							<!-- <img src="/img/logo-fb.png" alt=""> -->
-						</button>
-						<button class="button-blue2">
-							<i class="fa-brands fa-google"></i>
-							Google
-						</button>
+	
+				<div id="Login" class="tabcontent">
+					<h3>Login</h3>
+					<form class="form" th:action="@{/auth/login}" method="post" role="form">
+						<input type="text" name="username" placeholder="Email / Username">
+						
+						<!-- hide password -->
+						<div class="hidden">
+							<input type="password" name="password" placeholder="Password" required>
+							<span class="show-btn"><i class="fas fa-eye"></i></span>
+							
+							<!-- <input type="password" placeholder="Password">
+								<span class="show-btn"><i class="fas fa-eye"></i></span> -->
+								
+								
+								<!-- <input id="upass" type="password" name="userpass" placeholder="Password" required>
+									<input id="toggleBtn" type="button" onclick="togglePassword()" value="Show Password Characters"> -->
+								
+							</div>
+							<div>
+								<a href="/auth/forgot-password" class="text-right">Forgot Password?</a>
+								<!-- <a href="" class="text-right">Login with SMS</a> -->
+							</div>
+							<button type="submit" class="button-red">
+								Login
+								<!-- <i class="fa-solid fa-chevron-right"></i> -->
+							</button>
+					</form>
+	
+	
+					<div>
+						<a href="/">
+						</a>
+					</div>
+	
+					<div id="or">
+						<div class="or">
+							<hr>
+						</div>
+						<div class="or">Or</div>
+						<div class="or">
+							<hr>
+						</div>
+					</div>
+	
+					<div class="button-blue">
+						<div class="button-blue1">
+							<button class="button-blue2">
+								<i class="fa-brands fa-square-facebook"></i>
+								Facebook
+								<!-- <img src="/img/logo-fb.png" alt=""> -->
+							</button>
+							<button class="button-blue2">
+								<i class="fa-brands fa-google"></i>
+								Google
+							</button>
+						</div>
+					</div>
+	
+					<div class="checkbox">
+						Bạn đã
+						<input type="checkbox"><a href=""> chấp nhận điều khoản sử dụng</a>
+					</div>
+				</div>
+	
+				<div id="Register" class="tabcontent">
+					<h3>Register</h3>
+					<form class="form" action="">
+						<input type="text" placeholder="Fullname">
+						<input type="text" placeholder="Mobile">
+						<input type="text" placeholder="Email">
+						<input type="text" placeholder="Password">
+						<input type="text" placeholder="Re-enter password">
+					</form>
+					<div>
+						<a href="/">
+							<button class="button-red">
+								Register
+								<i class="fa-solid fa-chevron-right"></i>
+							</button>
+						</a>
 					</div>
 				</div>
 
-				<div class="checkbox">
-					Bạn đã
-					<input type="checkbox"><a href=""> chấp nhận điều khoản sử dụng</a>
-				</div>
 			</div>
 
-			<div id="Register" class="tabcontent">
-                <h3>Register</h3>
-                <form class="form" action="">
-                    <input type="text" placeholder="Fullname">
-                    <input type="text" placeholder="Mobile">
-                    <input type="text" placeholder="Email">
-                    <input type="text" placeholder="Password">
-                    <input type="text" placeholder="Re-enter password">
-                </form>
-                <div>
-                    <a href="/">
-                        <button class="button-red">
-                            Register
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </button>
-                    </a>
-                </div>
-            </div>
-		</div>
+			<div sec:authorize="isAuthenticated()" class="text-center text-primary">
+				You have logined in 
+			</div>
+			
+		<div>
 	</section>
 
 	<footer class="ftco-footer ftco-section img" style="background-image: url(images/footer-bg.jpg);">
@@ -269,23 +281,23 @@
 	</div>
 
 
-	<script th:src="@{/js/jquery.min.js}"></script>
-	<script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
-	<script th:src="@{/js/popper.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/jquery.easing.1.3.js}"></script>
-	<script th:src="@{/js/jquery.waypoints.min.js}"></script>
-	<script th:src="@{/js/jquery.stellar.min.js}"></script>
-	<script th:src="@{/js/owl.carousel.min.js}"></script>
-	<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
-	<script th:src="@{/js/aos.js}"></script>
-	<script th:src="@{/js/jquery.animateNumber.min.js}"></script>
-	<script th:src="@{/js/scrollax.min.js}"></script>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/js/popper.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.easing.1.3.js"></script>
+	<script src="/js/jquery.waypoints.min.js"></script>
+	<script src="/js/jquery.stellar.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/aos.js"></script>
+	<script src="/js/jquery.animateNumber.min.js"></script>
+	<script src="/js/scrollax.min.js"></script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script th:src="@{/js/google-map.js}"></script>
+	<script src="/js/google-map.js"></script>
 
-	<script th:src="@{/js/main.js}"></script>
+	<script src="/js/main.js"></script>
 
 </body>
 

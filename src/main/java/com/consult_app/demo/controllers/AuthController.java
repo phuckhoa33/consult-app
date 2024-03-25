@@ -81,7 +81,9 @@ public class AuthController {
             @ModelAttribute("user") @Valid SignupForm user,
             BindingResult result,
             Model model) {
-
+        if (result.hasErrors()) {
+            return "auth/signup";
+        }
         boolean success = authService.signup(user);
         if (success) {
             return "auth/check-mail";
@@ -97,6 +99,7 @@ public class AuthController {
             Model model) {
 
         authService.login(user);
+
         return "auth/login";
 
     }

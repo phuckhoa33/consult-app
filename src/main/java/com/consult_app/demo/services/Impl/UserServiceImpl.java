@@ -1,6 +1,5 @@
 package com.consult_app.demo.services.Impl;
 
-import java.nio.CharBuffer;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
         Date createdAt = new Date();
 
-        String hashPassword = passwordEncoder.encode(CharBuffer.wrap(user.getPassword()));
+        String hashPassword = passwordEncoder.encode(user.getPassword());
 
         user.setUserId(userId);
         user.setCreatedAt(createdAt);
