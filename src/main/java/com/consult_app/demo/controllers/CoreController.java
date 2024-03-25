@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.consult_app.demo.dtos.DoctorInformation;
 import com.consult_app.demo.services.DoctorService;
@@ -42,10 +45,14 @@ public class CoreController {
         return "core/list_doctor";
     }
 
-    @GetMapping("schedule-consult")
-    public String getAppointment() {
+    @GetMapping("schedule-consult/{doctorId}")
+    public Object getAppointment(@PathVariable String doctorId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            return "core/appointment";
+        }
 
-        return "core/appointment";
+        return new RedirectView("/auth/login");
     }
 
 }

@@ -106,7 +106,7 @@
                     <h3 th:text="${doctor.fullname}"></h3>
                     <span th:text="${doctor.rating}">☆</span>
                     <p th:text="${doctor.servicesOffered}"></p>
-                    <button><a href="/schedule-consult">Đặt Lịch</a></button>
+                    <button><a th:href="@{'/schedule-consult/'+${doctor.doctorId}}">Đặt Lịch</a></button>
                 </div>
             </div>
             
