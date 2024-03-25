@@ -16,6 +16,19 @@
 
     </resultMap>
 
+    <resultMap id="doctorSearchResultMap" type="com.consult_app.demo.dtos.DoctorInformation">
+        <result column="doctor_id" property="doctorId"/>
+        <result column="user_id" property="userId"/>
+        <result column="avatar" property="avatar"/>
+        <result column="username" property="username"/>
+        <result column="email" property="email"/>
+        <result column="fullname" property="fullname"/>
+        <result column="services_offered" property="servicesOffered"/>
+        <result column="experience" property="experience"/>
+        <result column="rating" property="rating"/>
+
+    </resultMap>
+
     <select id="getDoctorByDoctorId" resultMap="doctorResultMap">
         SELECT usr.doctor_id
              , usr.user_id
@@ -40,6 +53,22 @@
              , usr.status
              , usr.rating
         FROM "Doctor" usr
+    </select>
+
+    <select id="searchDoctors" resultMap="doctorSearchResultMap">
+        select dc.doctor_id, 
+                usr.user_id,
+                usr.avatar,
+                usr.username,
+                usr.email,
+                CONCAT(usr.firstname, ' ', usr.lastname) as fullname, 
+                dc.services_offered,
+                dc.experience,
+                dc.rating
+            from "User" usr
+            inner join "Doctor" dc ON usr.user_id = dc.user_id
+            where CONCAT(usr.firstname, ' ', usr.lastname) ILIKE '%' || #{keyword} || '%'
+            OR dc.services_offered ILIKE '%' || #{keyword} || '%'
     </select>
 
     <insert id="createDoctor">

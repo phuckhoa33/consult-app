@@ -78,10 +78,10 @@
 
     <section>
         <div class="list-product">
-            <div class="search">
-                <input type="text" placeholder="Tìm triệu chứng, chuyên khoa">
+            <form class="search" method='get' th:action='@{/doctors/1/none}'>
+                <input type="text" placeholder="Tìm triệu chứng, chuyên khoa" name="keyword" th:value="${keyword}">
                 <button>Tìm Kiếm</button>
-            </div>
+            </form>
             <div class="text1">
                 <p>Tìm kiếm phổ biến: <p1>Khám da liễu, siêu âm, tai mũi họng</p1>
                 </p>
@@ -92,7 +92,7 @@
             <div class="search1">
                 <p>Chuyên khoa</p>
                 <select name="cate" class="formlist" fdprocessedid="i1i7g" onchange="redirectToPage(this);">
-                    <option th:value="/doctors/1/none">Tất cả</option>
+                    <option>Tất cả</option>
                     <div  th:each="service : ${services}">
                         <option th:value="'/doctors/' + ${currentPage} + '/' + ${service}"  th:text="${service}"></option>
                     </div>

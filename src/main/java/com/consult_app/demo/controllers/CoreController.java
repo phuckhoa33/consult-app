@@ -1,5 +1,6 @@
 package com.consult_app.demo.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.consult_app.demo.dtos.DoctorInformation;
 import com.consult_app.demo.services.DoctorService;
-
-import jakarta.ws.rs.Path;
 
 @Controller
 @RequestMapping("/")
@@ -27,9 +26,14 @@ public class CoreController {
 
     @GetMapping("/doctors/{page}/{filter}")
     public String displayDoctors(Model model, @PathVariable("page") String page,
-            @PathVariable("filter") String filter) {
+            @PathVariable("filter") String filter, String keyword) {
+        List<DoctorInformation> doctors = new ArrayList<>();
+        if (keyword == null) {
+            doctors = doctorService.getDoctors(Integer.parseInt(page), filter);
+        } else {
+            doctors = doctorService.searchDoctors(keyword);
+        }
 
-        List<DoctorInformation> doctors = doctorService.getDoctors(Integer.parseInt(page), filter);
         List<String> services = doctorService.getDistinctServicesOffered();
         model.addAttribute("doctors", doctors);
         model.addAttribute("services", services);

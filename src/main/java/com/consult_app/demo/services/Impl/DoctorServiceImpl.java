@@ -105,4 +105,9 @@ public class DoctorServiceImpl implements DoctorService {
         return pageAmount;
     }
 
+    @Override
+    public List<DoctorInformation> searchDoctors(String keyword) {
+        return doctorMapper.searchDoctors(keyword);
+    }
+
 }

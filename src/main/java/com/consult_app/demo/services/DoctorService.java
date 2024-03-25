@@ -12,6 +12,8 @@ public interface DoctorService {
 
     List<String> getDistinctServicesOffered();
 
+    List<DoctorInformation> searchDoctors(String keyword);
+
     String createDoctor(Doctor doctor);
 
     String updateDoctor(Doctor doctor);

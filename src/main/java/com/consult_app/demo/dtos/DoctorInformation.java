@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 public class DoctorInformation {
     private String doctorId;
     private String userId;
+    private String avatar;
+    private String username;
+    private String email;
     private String experience;
     private String servicesOffered;
     private int bioId;
