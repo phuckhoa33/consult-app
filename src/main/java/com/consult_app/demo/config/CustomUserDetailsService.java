@@ -1,4 +1,4 @@
-package com.consult_app.demo.security;
+package com.consult_app.demo.config;
 
 import java.util.ArrayList;
 import java.util.List;

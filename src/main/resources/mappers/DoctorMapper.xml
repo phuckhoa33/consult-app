@@ -29,17 +29,19 @@
 
     </resultMap>
 
-    <select id="getDoctorByDoctorId" resultMap="doctorResultMap">
-        SELECT usr.doctor_id
-             , usr.user_id
-             , usr.experience
-             , usr.services_offered
-             , usr.bioId
-             , usr.education
-             , usr.status
-             , usr.rating
-        FROM "Doctor" usr
-        WHERE usr.doctor_id = #{doctorId}
+    <select id="getDoctorByDoctorId" resultMap="doctorSearchResultMap">
+        select dc.doctor_id, 
+                usr.user_id,
+                usr.avatar,
+                usr.username,
+                usr.email,
+                CONCAT(usr.firstname, ' ', usr.lastname) as fullname, 
+                dc.services_offered,
+                dc.experience,
+                dc.rating
+            from "User" usr
+            inner join "Doctor" dc ON usr.user_id = dc.user_id
+            where dc.doctor_id = #{doctorId}
     </select>
 
 

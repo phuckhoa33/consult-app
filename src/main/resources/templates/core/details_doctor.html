@@ -72,8 +72,8 @@
                     <li class="nav-item"><a href="/#about-section" class="nav-link"><span>About</span></a></li>
                     <li class="nav-item"><a href="/#department-section" class="nav-link"><span>Department</span></a>
                     </li>
-                    <li class="nav-item"><a href="/#doctor-section" class="nav-link"><span>Doctors</span></a></li>
-                    <li class="nav-item"><a href="/#contact-section" class="nav-link"><span>Contact</span></a></li>
+                    <li class="nav-item"><a href="/doctors/1/none" class="nav-link"><span>Doctors</span></a></li>
+                    <li class="nav-item"><a href="/doctors/1/none" class="nav-link"><span>Contact</span></a></li>
                     <li class="nav-item cta mr-md-2"><a href="" class="nav-link">Appointment</a>
                     </li>
                 </ul>
@@ -86,9 +86,9 @@
             <img src="./images/doc-7.jpg" alt="">
         </div>
         <div class="Doctor_infor">
-            <h1>Bs.Lê Đức Thọ</h1>
+            <h1 th:text="${doctor.fullname}"></h1>
             <span class="price">100.000 VNĐ</span>
-            <p>chuyên khoa gia liễu</p>
+            <p th:text="${doctor.servicesOffered}"></p>
         </div>
         <div class="Doctor_ico">
             <span class="icon">&#128197;</span>
@@ -126,20 +126,10 @@
     </div>
 
     <div class="appointment-calendar">
-        <div class="time">8:00</div>
-        <div class="time">8:30</div>
-        <div class="time">8:45</div>
-        <div class="time">9:00</div>
-        <div class="time">9:30</div>
-        <div class="time">10:00</div>
-        <div class="time">10:30</div>
-        <div class="time">10:45</div>
-        <div class="time">11:00</div>
-        <div class="time">11:30</div>
-        <div class="time">11:45</div>
-        <div class="time">12:00</div>
-        <div class="time">12:30</div>
-        <div class="time">12:45</div>
+        <div class="time" th:each="time : ${timestamp}">
+            <a th:text="${time}" th:href="@{'/appointment/' + ${doctor.doctorId} + '/' + ${time}}"></a>
+
+        </div>
     </div>
 
 

@@ -10,7 +10,7 @@ import com.consult_app.demo.models.Doctor;
 
 @Mapper
 public interface DoctorMapper {
-    Doctor getDoctorByDoctorId(@Param("doctorId") String doctorId);
+    DoctorInformation getDoctorByDoctorId(@Param("doctorId") int doctorId);
 
     List<Doctor> getDoctors();
 

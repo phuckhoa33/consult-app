@@ -66,9 +66,8 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public Doctor getDoctorByDoctorId(String doctorId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDoctorByDoctorId'");
+    public DoctorInformation getDoctorByDoctorId(String doctorId) {
+        return doctorMapper.getDoctorByDoctorId(Integer.parseInt(doctorId));
     }
 
     @Override

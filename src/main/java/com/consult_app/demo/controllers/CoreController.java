@@ -31,6 +31,8 @@ public class CoreController {
     public String displayDoctors(Model model, @PathVariable("page") String page,
             @PathVariable("filter") String filter, String keyword) {
         List<DoctorInformation> doctors = new ArrayList<>();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.isAuthenticated());
         if (keyword == null) {
             doctors = doctorService.getDoctors(Integer.parseInt(page), filter);
         } else {
@@ -46,13 +48,22 @@ public class CoreController {
     }
 
     @GetMapping("schedule-consult/{doctorId}")
-    public Object getAppointment(@PathVariable String doctorId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            return "core/appointment";
-        }
+    public Object getAppointment(@PathVariable String doctorId, Model model) {
+        DoctorInformation doctor = doctorService.getDoctorByDoctorId(doctorId);
+        String[] doctorTimestamps = new String[] { "8:00", "8:30", "8:45", "9:00", "9:30", "10:00", "10:30", "10:45",
+                "11:00", "11:30", "11:45", "12:00", "12:30", "12:45" };
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("timestamp", doctorTimestamps);
+        return "core/details_doctor";
+    }
 
-        return new RedirectView("/auth/login");
+    @GetMapping("appointment/{doctorId}/{time}")
+    public Object appointment(@PathVariable("doctorId") String doctorId, @PathVariable("time") String time) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getName().equals("anonymousUser")) {
+            return new RedirectView("/auth/login");
+        }
+        return "core/appointment";
     }
 
 }
